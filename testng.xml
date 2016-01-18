@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test" parallel="classes" verbose="3" thread-count="4"> 
+<listeners>
+	  <listener class-name="com.Portal.Report.ReportListener" />
+	</listeners>
+  <test name="Test" preserve-order="true" enabled="true">
+  <parameter name="automationfile" value="automation.properties"/>	
+    <classes>
+      <class name="com.ubersmith.internap.AppTest"/>
+      <class name="com.cart.tests.ConfigurationlistTest"/>    
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
