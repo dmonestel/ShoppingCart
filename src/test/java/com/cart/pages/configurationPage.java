@@ -121,27 +121,10 @@ public int total;
 	private WebElement universal_transfer_summary;
 	
 	
-	
-			
-	
-	
-	
-	
-	
-	
-<<<<<<< HEAD
-=======
-	@FindBy(xpath = ".//span[@class='price-amount action--text--monthly_price']")
+	@FindBy(xpath=".//span[@class='price-amount action--text--monthly_price']")
 	private WebElement totalMonthly_label;
 	
 	
-	
-	
-
-
->>>>>>> e6f2250831ba0f6d32a4c67983840c4b72fd215e
-	
-////////////////////////////////////////////////XPATH////////////////////////////////////
 
 ////////////////////////////////////////////////METHODS////////////////////////////////////
 	
