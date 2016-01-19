@@ -15,9 +15,11 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.cart.data.AccountPage;
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
 import com.cart.pages.LoginPage;
+import com.cart.pages.ShoppingCartPage;
 import com.cart.pages.UI;
 import com.ts.commons.DataSourceXls;
 import com.ts.commons.FirefoxDriver;
@@ -33,6 +35,12 @@ public class ConfigurationlistTest extends CartTestCase {
 	
 	
 	private configurationPage configPage ;
+	private ShoppingCartPage  shoppingCartPage;
+	private DeviceData data;
+	private AccountPage accountPage;
+	
+	
+	
 	@Test ()
 	public void verify_summary_on_the_right_Cart_133(){
 		configPage = PageFactory.initElements(driver, configurationPage.class);
@@ -83,7 +91,22 @@ public class ConfigurationlistTest extends CartTestCase {
 		.check
 		(
 		configPage.verify_windows_db_with_centos(driver)
+		
 		);
+		andUsing(
+				shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+				
+	    )
+	    .check(
+	    	  shoppingCartPage.isShoppingCartdisplayed(driver)
+	    );
+		andUsing(
+				accountPage=shoppingCartPage.gotTocheckout(driver)
+		)
+		.check(
+				accountPage.isAccountdisplayed(driver)
+				);
+		
 		
 		
 	
