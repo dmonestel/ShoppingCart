@@ -5,7 +5,7 @@ public class Constants {
 	public static String DOMAIN;
 	public static String LOGOUT_URL;
 	public static String hostname ;
-	
+	public static int TOTALMES ;
 	
 	public static void setTIME_OUT(int time_out) {
 		TIME_OUT = time_out;
@@ -24,4 +24,8 @@ public class Constants {
 
 	}
 	
+	public static void setTotalMes(int TotalMes) {
+        Constants.TOTALMES = TotalMes;
+
+	}
 }

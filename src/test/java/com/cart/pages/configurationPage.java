@@ -1,5 +1,8 @@
 package com.cart.pages;
 
+import java.util.concurrent.TimeUnit;
+
+import org.apache.bcel.classfile.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,12 +14,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.cart.data.Constants;
 import com.cart.data.DeviceData;
 import com.cart.data.PageUtils;
 import com.ts.commons.Page;
 import com.ts.commons.RaceConditions.WaitTool;
 
 public class configurationPage extends Page {
+
+public int total;	
+	
+	
 ////////////////////////////////////////////////XPATH////////////////////////////////////	
 	@FindBy(xpath = "(//a[@class='action--click--configure_plan btn btn--primary'])[1]")
 	private WebElement configure_button;
@@ -121,6 +129,17 @@ public class configurationPage extends Page {
 	
 	
 	
+<<<<<<< HEAD
+=======
+	@FindBy(xpath = ".//span[@class='price-amount action--text--monthly_price']")
+	private WebElement totalMonthly_label;
+	
+	
+	
+	
+
+
+>>>>>>> e6f2250831ba0f6d32a4c67983840c4b72fd215e
 	
 ////////////////////////////////////////////////XPATH////////////////////////////////////
 
@@ -193,6 +212,25 @@ public class configurationPage extends Page {
 	
 	
 ////////////////////////////////////////////////METHODS////////////////////////////////////
+	
+	
+public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
+    
+    {
+		add_to_cart_button.click();
+		
+		int totalCaracteres=totalMonthly_label.getText().length();
+		
+		
+		
+		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
+		Constants.setTotalMes(total);
+		return PageFactory.initElements(driver, ShoppingCartPage.class);
+    }
+	
+	
+	
+	
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	public Validator verify_summary_on_the_right(final WebDriver driver){
@@ -314,6 +352,7 @@ public class configurationPage extends Page {
 				
 				boolean windows_db_option1= microsoft1_db_centos.isEnabled();
 				Assert.assertTrue(windows_db_option1, "Microsoft SQL Server 2014 Web Edition is enabled");
+			  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				
 				boolean windows_db_option2= microsoft2_db_centos.isEnabled();
 				Assert.assertTrue(windows_db_option2, "Microsoft SQL Server 2014 Standard Edition is enabled");
@@ -325,6 +364,14 @@ public class configurationPage extends Page {
 			}
 		};
 	}
+	
+	
+	
+
+	
+	
+	
+	
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
