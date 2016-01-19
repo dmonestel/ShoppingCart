@@ -31,7 +31,7 @@ public class configurationPage extends Page {
 	private WebElement localization_title;
 	
 	@FindBy(xpath = "(//li[contains(.,'CentOS 7')])[3]")
-	private WebElement software_title;
+	private WebElement software_title_centos7;
 	
 	@FindBy(xpath = "//span[@class='price-amount action--text--monthly_price']")
 	private WebElement monthly_price;
@@ -51,12 +51,89 @@ public class configurationPage extends Page {
 	@FindBy(xpath = "//a[@class='btn btn--block btn--large btn--reverse action--click--checkout']")
 	private WebElement add_to_cart_button;
 	
+	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')])[1]")
+	private WebElement windows_radio_option;
 	
-
+	@FindBy(xpath = "(//span[contains(.,'Microsoft SQL Server 2014 Web Edition')])[1]")
+	private WebElement windows_db_radiobutton;
+	
+	@FindBy(xpath = "(//li[contains(.,'Windows Server 2012 R2 Standard Edition')])[4]")
+	private WebElement software_title_windows;
+	
+	@FindBy(xpath = "(//li[contains(.,'Microsoft SQL Server 2014 Web Edition')])[9]")
+	private WebElement software_title_db_windows;
+	
+	@FindBy(xpath = "//h1[contains(.,'Your Shopping Cart')]")
+	private WebElement your_shopping_cart_label;
+	
+	@FindBy(xpath = "//div[@class='optionsList-item-name field-input']//span[contains(.,'cPanel')]")
+	private WebElement cPanel_radio_button;
+	
+	@FindBy(xpath = "//div[@class='optionsList-item-name field-input']//span[contains(.,'Server Backup Manager')]")
+	private WebElement server_backup_manager_radio_button;
+	
+	@FindBy(xpath = "//div[@class='optionsList-item-name field-input']//span[contains(.,'1 Virtual Agent')]")
+	private WebElement virtual_agent_radio_button;
+	
+	@FindBy(xpath = "(//li[contains(.,'cPanel')])[3]")
+	private WebElement cPanel_summary;
+	
+	@FindBy(xpath = "(//li[contains(.,'1 Physical Agent')])[3]")
+	private WebElement physical_agent_summary;
+	
+	@FindBy(xpath = "(//li[contains(.,'Server Backup Manager')])[3]")
+	private WebElement SBM_summary;
+	
+	@FindBy(xpath = "(//li[contains(.,'1 Virtual Agent')])[3]")
+	private WebElement virtual_agent_summary;
+	
+	@FindBy(xpath = "//span[contains(.,'Dallas, TX (US Central)')]")
+	private WebElement Dallas_location;
+	//Locations
+	@FindBy(xpath = "//span[contains(.,'Montreal, QC (Canada East)')]")
+	private WebElement Montreal_location;
+	@FindBy(xpath = "//span[contains(.,'Santa Clara, CA (US West)')]")
+	private WebElement S_Clara_location;
+	@FindBy(xpath = "//span[contains(.,'Secaucus, NJ (US East)')]")
+	private WebElement Secaucus_location;
+	@FindBy(xpath = "//span[contains(.,'Amsterdam')]")
+	private WebElement Amsterdam_location;
+	@FindBy(xpath = "//span[contains(.,'London')]")
+	private WebElement London_location;
+	@FindBy(xpath = "//span[contains(.,'Hong Kong')]")
+	private WebElement Hong_Kong_location;
+	@FindBy(xpath = "//span[contains(.,'Singapore')]")
+	private WebElement Singapure_location;
+	//Locations
+	
+	@FindBy(xpath = "(//span[@class='action--text--option_name'][contains(.,'50GB Backup')])[1]")
+	private WebElement fiftyGB_backup;
+	
+	@FindBy(xpath = "(//li[contains(.,'50GB Backup')])[5]")
+	private WebElement universal_transfer_summary;
+	
+	
+	
+			
+	
+	
+	
+	
+	
+	
 	
 ////////////////////////////////////////////////XPATH////////////////////////////////////
 
 ////////////////////////////////////////////////METHODS////////////////////////////////////
+	
+	public configurationPage add_to_cart_click()
+	{
+		
+		add_to_cart_button.click();
+		
+		return this;
+	}
+	
 	public configurationPage configuration_Server_page_loading()
 	{
 		configuration_list_button.click();
@@ -64,6 +141,44 @@ public class configurationPage extends Page {
 		
 		return this;
 	}
+	
+	public configurationPage windows_server_creation()
+	{
+		
+		windows_radio_option.click();
+		windows_db_radiobutton.click();
+		
+	
+		return this;
+	}
+	public configurationPage shared_backup_selection()
+	{
+		fiftyGB_backup.click();
+		return this;
+	}
+	public configurationPage Centos__Cpanel_backup_management_server_creation()
+	{
+		
+		cPanel_radio_button.click();
+		server_backup_manager_radio_button.click();
+		virtual_agent_radio_button.click();
+		
+	
+		return this;
+	}
+	
+	public configurationPage Asia_pacific_location_selection()
+	{
+		
+		
+		Hong_Kong_location.click();
+		
+		
+	
+		return this;
+	}
+	
+	
 	
 	public configurationPage hostname_fill (DeviceData data)
     
@@ -89,9 +204,101 @@ public class configurationPage extends Page {
 				WaitTool.isElementPresentAndDisplay(driver,configuration_server_title);
 				Assert.assertTrue(configuration_server_title.isDisplayed());
 				Assert.assertTrue(localization_title.isDisplayed());
-				Assert.assertTrue(software_title.isDisplayed());
+				Assert.assertTrue(software_title_centos7.isDisplayed());
 				boolean price= monthly_price.isDisplayed();
 				Assert.assertTrue(price, "The Monthly Price is not present");
+				
+			}
+		};
+	}
+	public Validator verify_UT_summary(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_server_title);
+				boolean UT= universal_transfer_summary.isDisplayed();
+				Assert.assertTrue(UT, "The Universal Transfer summary is not present");
+				
+			}
+		};
+	}
+	
+	public Validator verify_locations(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				boolean Location;
+				WaitTool.isElementPresentAndDisplay(driver,configuration_server_title);
+				Location = Dallas_location.isDisplayed();
+				Assert.assertTrue(Location, "Dallas option is not present");
+				Location = Montreal_location.isDisplayed();
+				Assert.assertTrue(Location, "Montreal option is not present");
+				Location = S_Clara_location.isDisplayed();
+				Assert.assertTrue(Location, "Santa Clara option is not present");
+				Location = Secaucus_location.isDisplayed();
+				Assert.assertTrue(Location, "Secaucis option is not present");
+				Location = Amsterdam_location.isDisplayed();
+				Assert.assertTrue(Location, "Amsterdam option is not present");
+				Location = London_location.isDisplayed();
+				Assert.assertTrue(Location, "London option is not present");
+				Location = Hong_Kong_location.isDisplayed();
+				Assert.assertTrue(Location, "Hong Kong option is not present");
+				Location = Singapure_location.isDisplayed();
+				Assert.assertTrue(Location, "Singapure option is not present");			
+			}
+		};
+	}
+	
+	public Validator verify_summary_with_windows(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_server_title);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				Assert.assertTrue(localization_title.isDisplayed());
+				Assert.assertTrue(software_title_windows.isDisplayed());
+				Assert.assertTrue(software_title_db_windows.isDisplayed());
+				boolean price= monthly_price.isDisplayed();
+				Assert.assertTrue(price, "The Monthly Price is not present");
+				
+			}
+		};
+	}
+	public Validator verify_summary_with_cPanel_SBM_Agents(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_server_title);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				Assert.assertTrue(localization_title.isDisplayed());
+				Assert.assertTrue(software_title_centos7.isDisplayed());
+				Assert.assertTrue(cPanel_summary.isDisplayed());
+				Assert.assertTrue(SBM_summary.isDisplayed());
+				Assert.assertTrue(virtual_agent_summary.isDisplayed());
+				Assert.assertTrue(physical_agent_summary.isDisplayed());
+				boolean price= monthly_price.isDisplayed();
+				Assert.assertTrue(price, "The Monthly Price is not present");
+				
+			}
+		};
+	}
+	public Validator verify_your_shopping_cart_label(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,your_shopping_cart_label);
+				
+				boolean label= your_shopping_cart_label.isDisplayed();
+				Assert.assertTrue(label, "The Your Shopping Cart Page is not shown");
 				
 			}
 		};
