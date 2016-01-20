@@ -29,6 +29,10 @@ public int total;
 	@FindBy(xpath = "(//a[@class='action--click--configure_plan btn btn--primary'])[1]")
 	private WebElement configure_button;
 	
+	
+	@FindBy(xpath = "//tr[3]/td[7]/a[@class='action--click--configure_plan btn btn--primary']/span")
+	private WebElement configure_button_third_server;
+	
 	@FindBy(xpath = "//a[@href[contains(.,'configurations')]]")
 	private WebElement configuration_list_button;
 	
@@ -59,7 +63,7 @@ public int total;
 	@FindBy(xpath = "//a[@class='btn btn--block btn--large btn--reverse action--click--checkout']")
 	private WebElement add_to_cart_button;
 	
-	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')])[1]")
+	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')][1]")
 	private WebElement windows_radio_option;
 	
 	@FindBy(xpath = "(//span[contains(.,'Microsoft SQL Server 2014 Web Edition')])[1]")
@@ -124,6 +128,8 @@ public int total;
 	@FindBy(xpath=".//span[@class='price-amount action--text--monthly_price']")
 	private WebElement totalMonthly_label;
 	
+	@FindBy(xpath="//h1[contains(.,'Configuration')]")
+	private WebElement configuration_label;
 	
 
 ////////////////////////////////////////////////METHODS////////////////////////////////////
@@ -135,6 +141,17 @@ public int total;
 		
 		return this;
 	}
+	
+	
+	public configurationPage configuration_add_third_server(WebDriver driver)
+	{
+		WaitTool.isElementPresentAndDisplay(driver,configure_button_third_server);
+	
+		configure_button_third_server.click();
+		
+		return this;
+	}
+	
 	
 	public configurationPage configuration_Server_page_loading()
 	{
@@ -207,7 +224,7 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 		
 		
 		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
-		Constants.setTotalMes(total);
+		Constants.setTotalMes( total + Constants.TOTALMES );
 		return PageFactory.initElements(driver, ShoppingCartPage.class);
     }
 	
@@ -351,7 +368,18 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 	
 	
 
-	
+	public Validator is_configuration_displayed(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_label);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				
+			}
+		};
+	}
 	
 	
 	

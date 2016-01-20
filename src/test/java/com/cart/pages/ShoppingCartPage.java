@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Wait;
 
 import com.cart.data.AccountPage;
 import com.cart.data.Constants;
@@ -41,6 +42,8 @@ public class ShoppingCartPage extends Page {
 	@FindBy(xpath = "//button[@class='action--click--cross_selling_checkout btn btn--link']")
 	private WebElement goToCheckoukLink;
 	
+	@FindBy(xpath = "//a[@class='btn btn--block btn--alt action--click--continue_shopping']")
+	private WebElement continueShoppingButton;
 	
 	
 ////////////////////////////////////////////////Methods////////////////////////////////////	
@@ -53,6 +56,19 @@ public AccountPage gotTocheckout (WebDriver driver)
 	    goToCheckoukLink.click();
 		return PageFactory.initElements(driver, AccountPage.class);
     }
+
+public configurationPage gotToConfigurationPage (WebDriver driver)
+
+{
+	continueShoppingButton.click();
+
+	return PageFactory.initElements(driver, configurationPage.class);
+}
+
+
+
+
+
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
@@ -64,12 +80,12 @@ public AccountPage gotTocheckout (WebDriver driver)
 			@Override
 			public void Validate() {
 				
-			  driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-			  Assert.assertTrue(shoppingCartLabel.isDisplayed());
+			  WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+			 
 			  
 			  int totalCaracteres=totalMonthly_label.getText().length();
 			  int total =Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
-			
+			 
 			  Assert.assertEquals(Constants.TOTALMES,total);
 				
 			}

@@ -70,44 +70,9 @@ public class ConfigurationlistTest extends CartTestCase {
 			
 	}
 	
-	@Test ()
+
 	
-	public void add_server_to_Cart_Cart_175(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
-		
-		using
-		(			
-		configPage.configuration_Server_page_loading()	
-		)
-		.check
-		(
-		configPage.verify_windows_db_with_centos(driver)		
-		);
 	
-		andUsing
-		(configPage
-		.hostname_fill(DeviceData.getNew()
-		.setHostname(Constants.hostname)
-		)
-		)
-		.check
-		(
-		configPage.verify_windows_db_with_centos(driver)
-		);	
-		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
-				
-	   )
-	    .check(
-	    	  shoppingCartPage.isShoppingCartdisplayed(driver)
-	    );
-		andUsing(
-				accountPage=shoppingCartPage.gotTocheckout(driver)
-		)
-		.check(
-				accountPage.isAccountdisplayed(driver)
-		);
-   }
 
 	
 	@Test()

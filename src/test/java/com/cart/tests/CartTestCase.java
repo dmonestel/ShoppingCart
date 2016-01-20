@@ -33,6 +33,7 @@ public class CartTestCase extends TestCaseUtil{
 		Constants.setDomain(p.getProperty( "DOMAIN" ).toString());
 		Constants.setLOGOUT_URL(p.getProperty( "LOGOUT_URL").toString());
 		Constants.setHostname (p.getProperty("hostname" ).toString());
+		Constants.setTotalMes(0);
 		
 	}
 	
@@ -44,11 +45,14 @@ public class CartTestCase extends TestCaseUtil{
 		//driver.manage().window().maximize();  
 		driver.get(Constants.DOMAIN);
 		loginPage = ui.getLandingPage();
+		Constants.setTotalMes(0);
 	}
 
 	@AfterMethod (alwaysRun = true)
 	public void close() throws Exception {
 		//driver.close();
+		
+		driver.manage().deleteAllCookies();
 		driver.quit();
 	}
 
