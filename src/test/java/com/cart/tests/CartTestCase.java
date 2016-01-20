@@ -34,7 +34,7 @@ public class CartTestCase extends TestCaseUtil{
 		Constants.setLOGOUT_URL(p.getProperty( "LOGOUT_URL").toString());
 		Constants.setHostname (p.getProperty("hostname" ).toString());
 		Constants.setTotalMes(0);
-		
+	
 	}
 	
 	@BeforeMethod (alwaysRun = true)

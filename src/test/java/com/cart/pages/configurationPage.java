@@ -60,6 +60,9 @@ public int total;
 	@FindBy(xpath = "//input[@id='hostname-1']")
 	private WebElement hostname_input;
 	
+	@FindBy(xpath = "//input[@id='hostname-2']")
+	private WebElement editHostname_input;
+	
 	@FindBy(xpath = "//a[@class='btn btn--block btn--large btn--reverse action--click--checkout']")
 	private WebElement add_to_cart_button;
 	
@@ -199,6 +202,20 @@ public int total;
 	
 	
 	
+	public configurationPage amsterdam_location_selection()
+	{
+		
+		
+		Amsterdam_location.click();
+		
+		
+	
+		return this;
+	}
+	
+	
+	
+	
 	public configurationPage hostname_fill (DeviceData data)
     
     {
@@ -207,7 +224,13 @@ public int total;
     }
       
      
-  
+public configurationPage editHostname_fill (DeviceData data)
+    
+    {
+		editHostname_input.clear();
+	    editHostname_input.sendKeys(data.getHostname());
+		return this;
+    }
 
 	
 	
@@ -217,19 +240,28 @@ public int total;
 public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
     
     {
-		add_to_cart_button.click();
 		
-		int totalCaracteres=totalMonthly_label.getText().length();
-		
-		
-		
+	
+	
+	    
+		int totalCaracteres=totalMonthly_label.getText().length();	
 		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
 		Constants.setTotalMes( total + Constants.TOTALMES );
+		add_to_cart_button.click();
+		
+		
 		return PageFactory.initElements(driver, ShoppingCartPage.class);
     }
 	
 	
+public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
+
+{
+	add_to_cart_button.click();
 	
+	
+	return PageFactory.initElements(driver, ShoppingCartPage.class);
+}
 	
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
@@ -381,6 +413,27 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 		};
 	}
 	
+	
+	public Validator is_configuration_for_edit_displayed(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_label);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				
+				int totalCaracteres=totalMonthly_label.getText().length();
+				
+				
+				
+				total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
+				Constants.setTotalMes(total);
+				
+				
+			}
+		};
+	}
 	
 	
 	
