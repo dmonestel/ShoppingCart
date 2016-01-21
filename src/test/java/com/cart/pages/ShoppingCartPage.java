@@ -28,7 +28,11 @@ public class ShoppingCartPage extends Page {
 	
 
 	configurationPage configurationPage;
+	String serverName;
 	
+	
+	
+	/////WebElements///////
 	@FindBy(xpath = "//h1[contains(.,'Your Shopping Cart')]")
 	private WebElement shoppingCartLabel;
 	
@@ -60,6 +64,26 @@ public class ShoppingCartPage extends Page {
 	private WebElement removeLink;
 	
 	
+	@FindBy(xpath = ".//h4[contains(.,'Are you sure you want to remove this item?')]")
+	private WebElement removeWarningLabel;
+	
+	
+	@FindBy(xpath = "//a[@class='action--confirm--remove btn btn--large']")
+	private WebElement removeItemButton;
+	
+	@FindBy(xpath = ".//h3[@class='cart_empty_content--text']")
+	private WebElement emptyLabel;
+  
+	@FindBy(xpath = "//div[@class='col-4of5 action--text--config_description']")
+	private WebElement serverNameLabel;
+	
+	
+	
+	@FindBy(xpath = "//span[@class='removal_message']")
+	private WebElement removeMessage;
+	
+	
+	
 ////////////////////////////////////////////////Methods////////////////////////////////////	
 public AccountPage gotTocheckout (WebDriver driver)
     
@@ -88,13 +112,18 @@ public configurationPage gotToEditOption (WebDriver driver)
 }
 
 
-/*public ShoppingCartPage clickRemovelink (WebDriver driver)
+public ShoppingCartPage clickRemovelink (WebDriver driver)
 
 {
-	removeLink.click();
-    Assert.assertTrue(condition, message);
-	return PageFactory.initElements(driver, configurationPage.class);
-}*/
+  
+   this.serverName=serverNameLabel.getText();
+   removeLink.click();
+   WaitTool.isElementPresentAndDisplay(driver,removeWarningLabel);
+   removeItemButton.click();
+   
+    
+	return this;
+}
 
 
 
@@ -136,6 +165,10 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			}
 		};
 	}
+	
+	
+	
+	
 	
 
 	public Validator isLocationsDisplayed(final WebDriver driver){
@@ -181,7 +214,23 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 	}
 	
 	
-	
+	public Validator isItemDeleted(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				    
+				
+				   WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+				   WaitTool.isElementPresentAndDisplay(driver, removeMessage);
+				   WaitTool.isElementPresentAndDisplay(driver, emptyLabel);
+				   
+				
+				   Assert.assertFalse(checkoutButton.isDisplayed());
+				   
+				
+			}
+		};
+	}
 	
 	
 	@Override

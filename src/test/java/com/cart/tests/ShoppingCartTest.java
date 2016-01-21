@@ -203,6 +203,44 @@ public class ShoppingCartTest extends CartTestCase  {
 	
 	}
 	
+	@Test ()
+	public void remove_a_server_from_Cart_when_there_is_only_a_item_Cart_5(){
+		
+		configPage = PageFactory.initElements(driver, configurationPage.class);
+		
+		using
+		(			
+		configPage.configuration_Server_page_loading()	
+		)
+		.check
+		(
+		configPage.verify_windows_db_with_centos(driver)		
+		);
+	
+		andUsing
+		(configPage
+		.hostname_fill(DeviceData.getNew()
+		.setHostname(Constants.hostname)
+		)
+		)
+		.check
+		(
+		configPage.verify_windows_db_with_centos(driver)
+		);	
+		andUsing(
+		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+				
+	   )
+	    .check(
+	    	  shoppingCartPage.isShoppingCartdisplayed(driver)
+	    );
+		andUsing(
+				shoppingCartPage.clickRemovelink(driver)
+		)
+		.check(
+				shoppingCartPage.isItemDeleted(driver)
+		);
+   }
 	
 	
 }
