@@ -29,6 +29,10 @@ public int total;
 	@FindBy(xpath = "(//a[@class='action--click--configure_plan btn btn--primary'])[1]")
 	private WebElement configure_button;
 	
+	
+	@FindBy(xpath = "//tr[3]/td[7]/a[@class='action--click--configure_plan btn btn--primary']/span")
+	private WebElement configure_button_third_server;
+	
 	@FindBy(xpath = "//a[@href[contains(.,'configurations')]]")
 	private WebElement configuration_list_button;
 	
@@ -56,10 +60,13 @@ public int total;
 	@FindBy(xpath = "//input[@id='hostname-1']")
 	private WebElement hostname_input;
 	
+	@FindBy(xpath = "//input[@id='hostname-2']")
+	private WebElement editHostname_input;
+	
 	@FindBy(xpath = "//a[@class='btn btn--block btn--large btn--reverse action--click--checkout']")
 	private WebElement add_to_cart_button;
 	
-	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')])[1]")
+	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')][1]")
 	private WebElement windows_radio_option;
 	
 	@FindBy(xpath = "(//span[contains(.,'Microsoft SQL Server 2014 Web Edition')])[1]")
@@ -120,12 +127,18 @@ public int total;
 	@FindBy(xpath = "(//li[contains(.,'50GB Backup')])[5]")
 	private WebElement universal_transfer_summary;
 
-	@FindBy(xpath = ".//span[@class='price-amount action--text--monthly_price']")
-	private WebElement totalMonthly_label;
-	
-
 	
 ////////////////////////////////////////////////XPATH////////////////////////////////////
+
+	
+	
+	@FindBy(xpath=".//span[@class='price-amount action--text--monthly_price']")
+	private WebElement totalMonthly_label;
+	
+	@FindBy(xpath="//h1[contains(.,'Configuration')]")
+	private WebElement configuration_label;
+	
+
 
 ////////////////////////////////////////////////METHODS////////////////////////////////////
 	
@@ -136,6 +149,17 @@ public int total;
 		
 		return this;
 	}
+	
+	
+	public configurationPage configuration_add_third_server(WebDriver driver)
+	{
+		WaitTool.isElementPresentAndDisplay(driver,configure_button_third_server);
+	
+		configure_button_third_server.click();
+		
+		return this;
+	}
+	
 	
 	public configurationPage configuration_Server_page_loading()
 	{
@@ -183,23 +207,56 @@ public int total;
 	
 	
 	
+	public configurationPage amsterdam_location_selection()
+	{
+		
+		
+		Amsterdam_location.click();
+		
+		
+	
+		return this;
+	}
+	
+	
+	
+	
 	public configurationPage hostname_fill (DeviceData data)
     
     {
 		hostname_input.sendKeys(data.getHostname());
 		return this;
     }
+
+      
+     
+public configurationPage editHostname_fill (DeviceData data)
+    
+    {
+		editHostname_input.clear();
+	    editHostname_input.sendKeys(data.getHostname());
+		return this;
+    }
+
+	
+	
+////////////////////////////////////////////////METHODS////////////////////////////////////
+	
+	
+
 public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
     
     {
+		
+	
+	
+	    
+		int totalCaracteres=totalMonthly_label.getText().length();	
+		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
+		Constants.setTotalMes( total + Constants.TOTALMES );
 		add_to_cart_button.click();
 		
-		int totalCaracteres=totalMonthly_label.getText().length();
 		
-		
-		
-		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
-		Constants.setTotalMes(total);
 		return PageFactory.initElements(driver, ShoppingCartPage.class);
     }
 	
@@ -208,8 +265,20 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
   
 
 	
+public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
+
+{
+	add_to_cart_button.click();
 	
+
 ////////////////////////////////////////////////METHODS////////////////////////////////////	
+
+	
+	return PageFactory.initElements(driver, ShoppingCartPage.class);
+}
+	
+	
+
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	public Validator verify_summary_on_the_right(final WebDriver driver){
 		return new Validator() {
@@ -341,7 +410,52 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 				
 			}
 		};
+
 	}		
+
+
+	
+	
+	
+
+	public Validator is_configuration_displayed(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_label);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				
+			}
+		};
+	}
+	
+	
+	public Validator is_configuration_for_edit_displayed(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+				
+				WaitTool.isElementPresentAndDisplay(driver,configuration_label);
+				Assert.assertTrue(configuration_server_title.isDisplayed());
+				
+				int totalCaracteres=totalMonthly_label.getText().length();
+				
+				
+				
+				total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
+				Constants.setTotalMes(total);
+				
+				
+			}
+		};
+	}
+	
+	
+	
+
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
 	

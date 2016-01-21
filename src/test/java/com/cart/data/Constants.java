@@ -9,6 +9,7 @@ public class Constants {
 	public static String username;
 	public static String password;
 	public static String email;
+
 	
 	public static void setTIME_OUT(int time_out) {
 		TIME_OUT = time_out;
@@ -33,11 +34,13 @@ public class Constants {
         Constants.TOTALMES = TotalMes;
 
 	}
+
 	public static void setUsername(String username) {
         Constants.username = username;
 	}
     public static void setPassword(String password) {
             Constants.password = password;     
 	}
+
 	
 }

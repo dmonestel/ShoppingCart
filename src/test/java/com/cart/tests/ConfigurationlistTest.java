@@ -24,6 +24,7 @@ import com.cart.pages.UI;
 import com.ts.commons.DataSourceXls;
 import com.ts.commons.FirefoxDriver;
 import com.ts.commons.TestCaseUtil;
+import com.ts.commons.TSTestLink.TestlinkApi;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -66,22 +67,6 @@ public class ConfigurationlistTest extends CartTestCase {
 		(
 		configPage.verify_windows_db_with_centos(driver)		
 		);	
-			
-	}
-	
-	@Test ()
-	
-	public void add_server_to_Cart_Cart_175(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
-		using
-		(			
-		configPage.configuration_Server_page_loading()	
-		)
-		.check
-		(
-		configPage.verify_windows_db_with_centos(driver)		
-		);
-	
 		andUsing
 		(configPage
 		.hostname_fill(DeviceData.getNew()
@@ -107,13 +92,10 @@ public class ConfigurationlistTest extends CartTestCase {
 				accountPage.isAccountdisplayed(driver)
 				);
 
-	}
+	}			
 
-		
-		
 	
-	@Test ()
-	
+	@Test()
 	public void Add_configuration_Windows_Cart_63()
 	{
 		configPage = PageFactory.initElements(driver, configurationPage.class);
