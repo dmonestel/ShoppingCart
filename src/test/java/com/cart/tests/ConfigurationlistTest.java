@@ -1,50 +1,23 @@
 package com.cart.tests;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Properties;
 
-import jxl.read.biff.BiffException;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
 import com.cart.pages.AccountPage;
-import com.cart.pages.LoginPage;
 import com.cart.pages.ShoppingCartPage;
-import com.cart.pages.UI;
-import com.ts.commons.DataSourceXls;
-import com.ts.commons.FirefoxDriver;
-import com.ts.commons.TestCaseUtil;
-import com.ts.commons.TSTestLink.TestlinkApi;
-
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
-import com.cart.pages.configurationPage;
-
+import com.cart.pages.ConfigurationPage;
 
 public class ConfigurationlistTest extends CartTestCase {
 	
-	
-	private configurationPage configPage ;
+	private ConfigurationPage configPage ;
 	private ShoppingCartPage  shoppingCartPage;
-	private DeviceData data;
 	private AccountPage accountPage;
-	
-	
 	
 	@Test ()
 	public void verify_summary_on_the_right_Cart_133(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		using
 		(			
 		configPage.configuration_Server_page_loading()	
@@ -58,7 +31,7 @@ public class ConfigurationlistTest extends CartTestCase {
 	
 	@Test ()
 	public void Tooltip_for_the_unavailable_Microsoft_database_option_Cart_61(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		using
 		(			
 		configPage.configuration_Server_page_loading()	
@@ -79,7 +52,7 @@ public class ConfigurationlistTest extends CartTestCase {
 		
 		);
 		andUsing(
-				shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+				shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	    )
 	    .check(
@@ -92,13 +65,12 @@ public class ConfigurationlistTest extends CartTestCase {
 				accountPage.isAccountdisplayed(driver)
 				);
 
-	}			
-
+	}
 	
 	@Test()
 	public void Add_configuration_Windows_Cart_63()
 	{
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		using
 		(			
 		configPage.configuration_Server_page_loading()	
@@ -138,7 +110,7 @@ public class ConfigurationlistTest extends CartTestCase {
 	
 	public void Add_configuration_CentOS_Cart_66()
 	{
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		using
 		(			
 		configPage.configuration_Server_page_loading()	
@@ -170,7 +142,7 @@ public class ConfigurationlistTest extends CartTestCase {
 
 public void Verify_server_locations_cart_119()
 {
-	configPage = PageFactory.initElements(driver, configurationPage.class);
+	configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 	using
 	(			
 	configPage.configuration_Server_page_loading()	
@@ -179,17 +151,12 @@ public void Verify_server_locations_cart_119()
 	(
 	configPage.verify_locations(driver)	
 	);
-	
-	
-	
-	
-	
 }	
 
 //Tengo que analizar este caso
 @Test ()
 public void Adding_bandwidth_depending_of_the_location_selected_Cart_162(){
-	configPage = PageFactory.initElements(driver, configurationPage.class);
+	configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 	using
 	(			
 	configPage.configuration_Server_page_loading()	
@@ -202,7 +169,7 @@ public void Adding_bandwidth_depending_of_the_location_selected_Cart_162(){
 //
 @Test ()
 public void add_add_on_services_shared_backup (){
-	configPage = PageFactory.initElements(driver, configurationPage.class);
+	configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 	using
 	(			
 	configPage.configuration_Server_page_loading()	
@@ -230,5 +197,3 @@ public void add_add_on_services_shared_backup (){
 	);
   }
 }
-
-

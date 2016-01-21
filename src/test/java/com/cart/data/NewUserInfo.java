@@ -1,9 +1,6 @@
 package com.cart.data;
 
-import com.ts.commons.FirefoxDriver;
-import org.openqa.selenium.WebDriver;
-
-public class newuserInfo {
+public class NewUserInfo {
 	
 	private String first_name;
 	private String last_name;
@@ -19,16 +16,16 @@ public class newuserInfo {
 	private String country;
 	private String state;
 	
-	public static newuserInfo getNew()
+	public static NewUserInfo getNew()
 	{
-		return new newuserInfo();
+		return new NewUserInfo();
 	}
 //
 	public String getCountry() {
 		return this.country;
 	}
 
-	public newuserInfo setCountry(String country) {
+	public NewUserInfo setCountry(String country) {
 		this.country = country;
 		return this;
 	}
@@ -38,7 +35,7 @@ public class newuserInfo {
 		return this.state;
 	}
 
-	public newuserInfo setstate(String state) {
+	public NewUserInfo setstate(String state) {
 		this.state = state;
 		return this;
 	}
@@ -48,7 +45,7 @@ public class newuserInfo {
 		return this.first_name;
 	}
 
-	public newuserInfo setFirstname(String first_name) {
+	public NewUserInfo setFirstname(String first_name) {
 		this.first_name = first_name;
 		return this;
 	}
@@ -59,7 +56,7 @@ public class newuserInfo {
 		return this.last_name;
 	}
 
-	public newuserInfo setLastname(String last_name) {
+	public NewUserInfo setLastname(String last_name) {
 		this.last_name = last_name;
 		return this;
 	}
@@ -68,7 +65,7 @@ public class newuserInfo {
 		return this.company;
 	}
 
-	public newuserInfo setCompany(String company) {
+	public NewUserInfo setCompany(String company) {
 		this.company = company;
 		return this;
 	}
@@ -77,7 +74,7 @@ public class newuserInfo {
 		return this.address;
 	}
 
-	public newuserInfo setAddress(String address) {
+	public NewUserInfo setAddress(String address) {
 		this.address = address;
 		return this;
 	}
@@ -86,7 +83,7 @@ public class newuserInfo {
 		return this.city;
 	}
 
-	public newuserInfo setCity(String city) {
+	public NewUserInfo setCity(String city) {
 		this.city = city;
 		return this;
 	}
@@ -95,7 +92,7 @@ public class newuserInfo {
 		return this.postal_code;
 	}
 
-	public newuserInfo setPostal_code(String postal_code) {
+	public NewUserInfo setPostal_code(String postal_code) {
 		this.postal_code = postal_code;
 		return this;
 	}
@@ -104,7 +101,7 @@ public class newuserInfo {
 		return this.phone;
 	}
 
-	public newuserInfo setPhone(String phone) {
+	public NewUserInfo setPhone(String phone) {
 		this.phone = phone;
 		return this;
 	}
@@ -113,7 +110,7 @@ public class newuserInfo {
 		return this.username;
 	}
 
-	public newuserInfo setUsername(String username) {
+	public NewUserInfo setUsername(String username) {
 		this.username = username;
 		return this;
 	}
@@ -122,7 +119,7 @@ public class newuserInfo {
 		return this.password;
 	}
 
-	public newuserInfo setPassword(String password) {
+	public NewUserInfo setPassword(String password) {
 		this.password = password;
 		return this;
 	}
@@ -131,7 +128,7 @@ public class newuserInfo {
 		return this.confirm_password;
 	}
 
-	public newuserInfo setConfirm_password(String confirm_password) {
+	public NewUserInfo setConfirm_password(String confirm_password) {
 		this.confirm_password = confirm_password;
 		return this;
 	}
@@ -140,7 +137,7 @@ public class newuserInfo {
 		return this.signature;
 	}
 
-	public newuserInfo setSignature(String signature) {
+	public NewUserInfo setSignature(String signature) {
 		this.signature = signature;
 		return this;
 	}

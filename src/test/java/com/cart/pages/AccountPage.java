@@ -1,31 +1,14 @@
 package com.cart.pages;
-import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.bcel.generic.ACONST_NULL;
-import org.openqa.selenium.By;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import com.cart.data.PageUtils;
 import com.cart.data.AccountData;
-import com.cart.data.Constants;
-import com.cart.data.DeviceData;
-import com.cart.data.newuserInfo;
-import com.sun.jna.platform.win32.Advapi32Util.Account;
-import com.ts.commons.Component;
-import com.ts.commons.FirefoxDriver;
+import com.cart.data.NewUserInfo;
 import com.ts.commons.Page;
-import com.ts.commons.TestCaseUtil;
-import com.ts.commons.Until;
 import com.ts.commons.Validator;
 import com.ts.commons.RaceConditions.WaitTool;
 import org.openqa.selenium.Keys;
@@ -59,34 +42,43 @@ public class AccountPage extends Page{
                  //New Account//
 	@FindBy(xpath = "//h1[@class='page--title']")
 	private WebElement account_registration_label;
+
 	@FindBy(xpath = "//div[@class='action--render--first_name']/input")
 	private WebElement first_name_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--last_name']/input")
 	private WebElement last_name_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--company']/input")
 	private WebElement company_input;	
+	
 	@FindBy(xpath = "//div[@class='action--render--address']/input")
 	private WebElement address_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--city']/input")
 	private WebElement city_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--postal_code field--postal_code col-4of5']/input")
 	private WebElement postal_code_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--phone']/input")
 	private WebElement phone_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--username']/input")
 	private WebElement username2_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--password']/input")
 	private WebElement password2_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--confirm_password']/input")
 	private WebElement confirm_password_input;
+	
 	@FindBy(xpath = "//div[@class='action--render--signature field--signature']/input")
 	private WebElement signature_input;
 	
-	
-	//
-	
 	@FindBy(xpath = "//div[@class='action--render--state']//span")
 	private WebElement state_dropdown;
+	
 	@FindBy(xpath = "//div[@class='action--render--state']//input")
 	private WebElement state_search_fill;
 	//
@@ -104,10 +96,6 @@ public class AccountPage extends Page{
 	 @FindBy(xpath = "//input[@class='action--radio--new_credit_card']")
 	 private WebElement use_new_credit_cart_radiobutton;
 	
-	
-	
-	
-	               //New Account//
 	
 ////////////////////////////////////////////////METHODS///////////////////////////////////////	
 public AccountPage login_fill (WebDriver driver,AccountData data)   
@@ -195,7 +183,7 @@ public AccountPage setState(String state, WebDriver driver)
 	return this;
 	     
 }
-public <T> AccountPage fillContactDataFullParam(newuserInfo contact, WebDriver driver, Class<T> expectedPage) {
+public <T> AccountPage fillContactDataFullParam(NewUserInfo contact, WebDriver driver, Class<T> expectedPage) {
 	
 	WaitTool.waitForElementPresentAndVisible(driver, account_registration_label);
 	setFirstName(contact.getFirst_name(), driver);
@@ -218,9 +206,18 @@ public <T> AccountPage fillContactDataFullParam(newuserInfo contact, WebDriver d
 
 
 
+@Override
+public AccountPage and() {
+	// TODO Auto-generated method stub
+	return this;
+}
 
+@Override
+public AccountPage then() {
+	// TODO Auto-generated method stub
+	return this;
+}
 
-////////////////////////////////////////////////METHODS////////////////////////////////////////	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////		
 	public Validator isAccountdisplayed(final WebDriver driver){
 		return new Validator() {
@@ -282,25 +279,7 @@ public <T> AccountPage fillContactDataFullParam(newuserInfo contact, WebDriver d
 			  WaitTool.waitForElementPresentAndVisible(driver,account_registration_label);
 			  Assert.assertTrue(account_registration_label.isDisplayed());
 			  
-			 
-				
 			}
 			};
 		}
-////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
-
-	@Override
-	public Page and() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Page then() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
 }

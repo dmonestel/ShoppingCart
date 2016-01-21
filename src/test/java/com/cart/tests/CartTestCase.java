@@ -33,14 +33,11 @@ public class CartTestCase extends TestCaseUtil{
 		Constants.setDomain(p.getProperty( "DOMAIN" ).toString());
 		Constants.setLOGOUT_URL(p.getProperty( "LOGOUT_URL").toString());
 		Constants.setHostname (p.getProperty("hostname" ).toString());
-<<<<<<< HEAD
 		Constants.setUsername (p.getProperty("username" ).toString());
 		Constants.setPassword (p.getProperty("password" ).toString());
 		Constants.setEmail (p.getProperty("email" ).toString());
-=======
 		Constants.setTotalMes(0);
 	
->>>>>>> 76553d9e74612fdf3df01bfa84090d39a66e673b
 	}
 	
 	@BeforeMethod (alwaysRun = true)
