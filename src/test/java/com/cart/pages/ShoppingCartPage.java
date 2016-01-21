@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.cart.data.AccountPage;
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
 import com.google.common.base.FinalizablePhantomReference;

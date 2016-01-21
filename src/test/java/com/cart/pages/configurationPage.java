@@ -119,27 +119,11 @@ public int total;
 	
 	@FindBy(xpath = "(//li[contains(.,'50GB Backup')])[5]")
 	private WebElement universal_transfer_summary;
-	
-	
-	
-			
-	
-	
-	
-	
-	
-	
-<<<<<<< HEAD
-=======
+
 	@FindBy(xpath = ".//span[@class='price-amount action--text--monthly_price']")
 	private WebElement totalMonthly_label;
 	
-	
-	
-	
 
-
->>>>>>> e6f2250831ba0f6d32a4c67983840c4b72fd215e
 	
 ////////////////////////////////////////////////XPATH////////////////////////////////////
 
@@ -205,15 +189,6 @@ public int total;
 		hostname_input.sendKeys(data.getHostname());
 		return this;
     }
-      
-     
-  
-
-	
-	
-////////////////////////////////////////////////METHODS////////////////////////////////////
-	
-	
 public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
     
     {
@@ -228,10 +203,13 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 		return PageFactory.initElements(driver, ShoppingCartPage.class);
     }
 	
+	      
+     
+  
+
 	
 	
-	
-	
+////////////////////////////////////////////////METHODS////////////////////////////////////	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	public Validator verify_summary_on_the_right(final WebDriver driver){
 		return new Validator() {
@@ -363,16 +341,7 @@ public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
 				
 			}
 		};
-	}
-	
-	
-	
-
-	
-	
-	
-	
-	
+	}		
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
 	

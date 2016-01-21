@@ -15,9 +15,9 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.cart.data.AccountPage;
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
+import com.cart.pages.AccountPage;
 import com.cart.pages.LoginPage;
 import com.cart.pages.ShoppingCartPage;
 import com.cart.pages.UI;
@@ -93,9 +93,6 @@ public class ConfigurationlistTest extends CartTestCase {
 		configPage.verify_windows_db_with_centos(driver)
 		
 		);
-<<<<<<< HEAD
-	}
-=======
 		andUsing(
 				shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
 				
@@ -109,10 +106,11 @@ public class ConfigurationlistTest extends CartTestCase {
 		.check(
 				accountPage.isAccountdisplayed(driver)
 				);
+
+	}
+
 		
 		
-		
->>>>>>> e6f2250831ba0f6d32a4c67983840c4b72fd215e
 	
 	@Test ()
 	
