@@ -33,6 +33,9 @@ public class CartTestCase extends TestCaseUtil{
 		Constants.setDomain(p.getProperty( "DOMAIN" ).toString());
 		Constants.setLOGOUT_URL(p.getProperty( "LOGOUT_URL").toString());
 		Constants.setHostname (p.getProperty("hostname" ).toString());
+		Constants.setUsername (p.getProperty("username" ).toString());
+		Constants.setPassword (p.getProperty("password" ).toString());
+		Constants.setEmail (p.getProperty("email" ).toString());
 		Constants.setTotalMes(0);
 	
 	}
@@ -42,7 +45,7 @@ public class CartTestCase extends TestCaseUtil{
 		ui = new UI();
 		driver = ui.getFirefoxDriver();
 		driver.manage().deleteAllCookies();
-		//driver.manage().window().maximize();  
+		driver.manage().window().maximize();  
 		driver.get(Constants.DOMAIN);
 		loginPage = ui.getLandingPage();
 		Constants.setTotalMes(0);

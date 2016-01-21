@@ -1,15 +1,22 @@
 package com.cart.data;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 import java.util.ArrayList;
+
 import org.openqa.selenium.NoSuchElementException;
+
+import com.cart.pages.AccountPage;
 import com.ts.commons.FirefoxDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
 import com.ts.commons.Validator;
 
 public class PageUtils {
@@ -35,10 +42,10 @@ public class PageUtils {
 		return PageFactory.initElements(driver, expectedPage); 
 	}
 	
-	 public static <T> T selectDropDownOptionByWebElement(WebElement element, String option, FirefoxDriver driver, Class<T> expectedPage)
+	 public static <T> T selectDropDownOptionByWebElement(WebElement element, String option, WebDriver driver, Class<AccountPage> class1)
 	 {
 	  new Select(element).selectByVisibleText(option);
-	  return PageFactory.initElements(driver, expectedPage); 
+	  return (T) PageFactory.initElements(driver, class1); 
 	 }
 	
 	public static <T> T selectListOption(By selectorList, By selectorOption, FirefoxDriver driver, Class<T> expectedPage)

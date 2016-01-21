@@ -1,26 +1,18 @@
 package com.cart.pages;
 
 import java.util.concurrent.TimeUnit;
-
-import org.apache.bcel.classfile.Constant;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import com.ts.commons.FirefoxDriver;
 import com.ts.commons.Validator;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
-import com.cart.data.PageUtils;
 import com.ts.commons.Page;
 import com.ts.commons.RaceConditions.WaitTool;
 
-public class configurationPage extends Page {
+public class ConfigurationPage extends Page {
 
 public int total;	
 	
@@ -66,7 +58,7 @@ public int total;
 	@FindBy(xpath = "//a[@class='btn btn--block btn--large btn--reverse action--click--checkout']")
 	private WebElement add_to_cart_button;
 	
-	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')][1]")
+	@FindBy(xpath = "(//div[@class='optionsList-item-name field-input']//span[contains(.,'Windows Server 2012 R2 Standard Edition')])[1]")
 	private WebElement windows_radio_option;
 	
 	@FindBy(xpath = "(//span[contains(.,'Microsoft SQL Server 2014 Web Edition')])[1]")
@@ -126,6 +118,10 @@ public int total;
 	
 	@FindBy(xpath = "(//li[contains(.,'50GB Backup')])[5]")
 	private WebElement universal_transfer_summary;
+
+	
+////////////////////////////////////////////////XPATH////////////////////////////////////
+
 	
 	
 	@FindBy(xpath=".//span[@class='price-amount action--text--monthly_price']")
@@ -135,9 +131,10 @@ public int total;
 	private WebElement configuration_label;
 	
 
+
 ////////////////////////////////////////////////METHODS////////////////////////////////////
 	
-	public configurationPage add_to_cart_click()
+	public ConfigurationPage add_to_cart_click()
 	{
 		
 		add_to_cart_button.click();
@@ -146,7 +143,7 @@ public int total;
 	}
 	
 	
-	public configurationPage configuration_add_third_server(WebDriver driver)
+	public ConfigurationPage configuration_add_third_server(WebDriver driver)
 	{
 		WaitTool.isElementPresentAndDisplay(driver,configure_button_third_server);
 	
@@ -156,7 +153,7 @@ public int total;
 	}
 	
 	
-	public configurationPage configuration_Server_page_loading()
+	public ConfigurationPage configuration_Server_page_loading()
 	{
 		configuration_list_button.click();
 		configure_button.click();
@@ -164,7 +161,7 @@ public int total;
 		return this;
 	}
 	
-	public configurationPage windows_server_creation()
+	public ConfigurationPage windows_server_creation()
 	{
 		
 		windows_radio_option.click();
@@ -173,12 +170,12 @@ public int total;
 	
 		return this;
 	}
-	public configurationPage shared_backup_selection()
+	public ConfigurationPage shared_backup_selection()
 	{
 		fiftyGB_backup.click();
 		return this;
 	}
-	public configurationPage Centos__Cpanel_backup_management_server_creation()
+	public ConfigurationPage Centos__Cpanel_backup_management_server_creation()
 	{
 		
 		cPanel_radio_button.click();
@@ -189,7 +186,7 @@ public int total;
 		return this;
 	}
 	
-	public configurationPage Asia_pacific_location_selection()
+	public ConfigurationPage Asia_pacific_location_selection()
 	{
 		
 		
@@ -202,7 +199,7 @@ public int total;
 	
 	
 	
-	public configurationPage amsterdam_location_selection()
+	public ConfigurationPage amsterdam_location_selection()
 	{
 		
 		
@@ -216,15 +213,16 @@ public int total;
 	
 	
 	
-	public configurationPage hostname_fill (DeviceData data)
+	public ConfigurationPage hostname_fill (DeviceData data)
     
     {
 		hostname_input.sendKeys(data.getHostname());
 		return this;
     }
+
       
      
-public configurationPage editHostname_fill (DeviceData data)
+public ConfigurationPage editHostname_fill (DeviceData data)
     
     {
 		editHostname_input.clear();
@@ -237,33 +235,43 @@ public configurationPage editHostname_fill (DeviceData data)
 ////////////////////////////////////////////////METHODS////////////////////////////////////
 	
 	
+
 public ShoppingCartPage AddToCart (WebDriver driver, DeviceData data)
     
     {
 		
-	
-	
-	    
 		int totalCaracteres=totalMonthly_label.getText().length();	
 		total=Integer.valueOf(totalMonthly_label.getText().substring(1,(totalCaracteres-3)));
 		Constants.setTotalMes( total + Constants.TOTALMES );
 		add_to_cart_button.click();
 		
-		
 		return PageFactory.initElements(driver, ShoppingCartPage.class);
     }
 	
-	
+	      
+
 public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
 
 {
 	add_to_cart_button.click();
 	
+
+////////////////////////////////////////////////METHODS////////////////////////////////////	
+
 	
 	return PageFactory.initElements(driver, ShoppingCartPage.class);
 }
 	
-	
+@Override
+public ConfigurationPage and() {
+	return this;
+}
+@Override
+public ConfigurationPage then() {
+	return this;
+}
+
+
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	public Validator verify_summary_on_the_right(final WebDriver driver){
 		return new Validator() {
@@ -395,10 +403,9 @@ public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
 				
 			}
 		};
-	}
-	
-	
-	
+
+	}		
+
 
 	public Validator is_configuration_displayed(final WebDriver driver){
 		return new Validator() {
@@ -412,7 +419,6 @@ public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
 			}
 		};
 	}
-	
 	
 	public Validator is_configuration_for_edit_displayed(final WebDriver driver){
 		return new Validator() {
@@ -435,21 +441,4 @@ public ShoppingCartPage only_AddToCart (WebDriver driver, DeviceData data)
 		};
 	}
 	
-	
-	
-////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
-	
-	
-
-	@Override
-	public configurationPage and() {
-		return this;
-	}
-	@Override
-	public configurationPage then() {
-		return this;
-	}
-	
-	
-
 }

@@ -1,34 +1,22 @@
 package com.cart.pages;
-import java.sql.Driver;
-import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
-
-import com.ts.commons.FirefoxDriver;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Wait;
-
-import com.cart.data.AccountPage;
 import com.cart.data.Constants;
-import com.cart.data.DeviceData;
-import com.google.common.base.FinalizablePhantomReference;
 import com.ts.commons.Page;
-import com.ts.commons.TSJavaScriptExecutor;
-import com.ts.commons.TsDriver;
 import com.ts.commons.Validator;
 import com.ts.commons.RaceConditions.WaitTool;
 
 public class ShoppingCartPage extends Page {
 
-	
 
-	configurationPage configurationPage;
-	String serverName;
+
+	ConfigurationPage ConfigurationPage;
+
 	
 	
 	
@@ -94,29 +82,29 @@ public AccountPage gotTocheckout (WebDriver driver)
 		return PageFactory.initElements(driver, AccountPage.class);
     }
 
-public configurationPage gotToConfigurationPage (WebDriver driver)
+public ConfigurationPage gotToConfigurationPage (WebDriver driver)
 
 {
 	continueShoppingButton.click();
 
-	return PageFactory.initElements(driver, configurationPage.class);
+	return PageFactory.initElements(driver, ConfigurationPage.class);
 }
 
 
-public configurationPage gotToEditOption (WebDriver driver)
+public ConfigurationPage gotToEditOption (WebDriver driver)
 
 {
 	editLink.click();
 
-	return PageFactory.initElements(driver, configurationPage.class);
+	return PageFactory.initElements(driver, ConfigurationPage.class);
 }
 
 
 public ShoppingCartPage clickRemovelink (WebDriver driver)
 
 {
-  
-   this.serverName=serverNameLabel.getText();
+
+ 
    removeLink.click();
    WaitTool.isElementPresentAndDisplay(driver,removeWarningLabel);
    removeItemButton.click();
@@ -125,10 +113,7 @@ public ShoppingCartPage clickRemovelink (WebDriver driver)
 	return this;
 }
 
-
-
-
-
+	
 
 
 
@@ -136,19 +121,20 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 
 {
 	try {
-		WebElement element=driver.findElement(By.xpath(xpath));
+		driver.findElement(By.xpath(xpath));
 		return true;
 	} catch (Exception e) {
 		return false;
 	}
-	}
+}
+
+
+
 
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
 
-	
-	
 	public Validator isShoppingCartdisplayed(final WebDriver driver){
 		return new Validator() {
 			@Override
@@ -165,11 +151,6 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			}
 		};
 	}
-	
-	
-	
-	
-	
 
 	public Validator isLocationsDisplayed(final WebDriver driver){
 		return new Validator() {
@@ -189,8 +170,6 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			}
 		};
 	}
-	
-	
 	
 	public Validator isEditItem(final WebDriver driver){
 		return new Validator() {
@@ -212,6 +191,7 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			}
 		};
 	}
+
 	
 	
 	public Validator isItemDeleted(final WebDriver driver){
@@ -247,3 +227,6 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 	
 
 }
+
+
+

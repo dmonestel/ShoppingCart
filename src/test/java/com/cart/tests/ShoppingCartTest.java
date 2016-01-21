@@ -3,24 +3,24 @@ package com.cart.tests;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-import com.cart.data.AccountPage;
+import com.cart.pages.AccountPage;
 import com.cart.data.Constants;
 import com.cart.data.DeviceData;
 import com.cart.pages.ShoppingCartPage;
-import com.cart.pages.configurationPage;
+import com.cart.pages.ConfigurationPage;
+import com.sun.jna.platform.unix.X11.XClientMessageEvent.Data;
 
 public class ShoppingCartTest extends CartTestCase  {
 	
-	private configurationPage configPage ;
+	private ConfigurationPage configPage ;
 	private ShoppingCartPage  shoppingCartPage;
-	private DeviceData data;
 	private AccountPage accountPage;
 	
 	
 	@Test ()
 	public void add_server_to_Cart_Cart_175(){
 		
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		
 		using
 		(			
@@ -42,7 +42,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		configPage.verify_windows_db_with_centos(driver)
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -59,7 +59,7 @@ public class ShoppingCartTest extends CartTestCase  {
 	
 	@Test ()
 	public void add_more_than_2_servers_to_the_cart_Cart_67(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		
 		using
 		(			
@@ -73,7 +73,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		configPage.verify_windows_db_with_centos(driver)
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -96,7 +96,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		configPage.verify_windows_db_with_centos(driver)
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -107,7 +107,7 @@ public class ShoppingCartTest extends CartTestCase  {
 	
 	@Test ()
 	public void adding_more_than_one_server_in_differents_locations_CART_157(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		
 		using
 		(			
@@ -123,7 +123,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -148,7 +148,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		);	
 		andUsing(
 		
-				shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+				shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -157,11 +157,9 @@ public class ShoppingCartTest extends CartTestCase  {
 	
 	}
 	
-	
-	
 	@Test ()
 	public void editing_a_product_in_shopping_cart_CART_153(){
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		
 		using
 		(			
@@ -176,7 +174,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -185,7 +183,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		andUsing(
 				configPage=shoppingCartPage.gotToEditOption(driver)
 				.amsterdam_location_selection()
-				.editHostname_fill(data.getNew()
+				.editHostname_fill(DeviceData.getNew()
 						.setHostname("Edit"+Constants.hostname))
 				
 		)
@@ -194,7 +192,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		);
 		andUsing(
 				
-				shoppingCartPage=configPage.only_AddToCart(driver, data.getNew())
+				shoppingCartPage=configPage.only_AddToCart(driver, DeviceData.getNew())
 				
 		).check
 		(
@@ -202,11 +200,12 @@ public class ShoppingCartTest extends CartTestCase  {
 	    );
 	
 	}
+
 	
 	@Test ()
 	public void remove_a_server_from_Cart_when_there_is_only_a_item_Cart_5(){
 		
-		configPage = PageFactory.initElements(driver, configurationPage.class);
+		configPage = PageFactory.initElements(driver, ConfigurationPage.class);
 		
 		using
 		(			
@@ -228,7 +227,7 @@ public class ShoppingCartTest extends CartTestCase  {
 		configPage.verify_windows_db_with_centos(driver)
 		);	
 		andUsing(
-		shoppingCartPage= configPage.AddToCart(driver,data.getNew()) 
+		shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
 				
 	   )
 	    .check(
@@ -243,4 +242,5 @@ public class ShoppingCartTest extends CartTestCase  {
    }
 	
 	
+
 }
