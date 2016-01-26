@@ -75,13 +75,6 @@ public ConfigurationPage gotToEditOption (WebDriver driver)
 }
 
 
-/*public ShoppingCartPage clickRemovelink (WebDriver driver)
-
-{
-	removeLink.click();
-    Assert.assertTrue(condition, message);
-	return PageFactory.initElements(driver, ConfigurationPage.class);
-}*/
 
 
 
@@ -118,7 +111,8 @@ public ShoppingCartPage then() {
 			@Override
 			public void Validate() {
 				
-			  WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+			    WaitTool.waitForElementPresentAndVisible(driver, shoppingCartLabel);
+				WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
 			 
 			  
 			  int totalCaracteres=totalMonthly_label.getText().length();
@@ -129,6 +123,8 @@ public ShoppingCartPage then() {
 			}
 		};
 	}
+	
+
 
 	public Validator isLocationsDisplayed(final WebDriver driver){
 		return new Validator() {
