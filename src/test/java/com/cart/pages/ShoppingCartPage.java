@@ -14,8 +14,13 @@ import com.ts.commons.RaceConditions.WaitTool;
 public class ShoppingCartPage extends Page {
 
 
+
 	ConfigurationPage ConfigurationPage;
+
 	
+	
+	
+	/////WebElements///////
 	@FindBy(xpath = "//h1[contains(.,'Your Shopping Cart')]")
 	private WebElement shoppingCartLabel;
 	
@@ -47,6 +52,26 @@ public class ShoppingCartPage extends Page {
 	private WebElement removeLink;
 	
 	
+	@FindBy(xpath = ".//h4[contains(.,'Are you sure you want to remove this item?')]")
+	private WebElement removeWarningLabel;
+	
+	
+	@FindBy(xpath = "//a[@class='action--confirm--remove btn btn--large']")
+	private WebElement removeItemButton;
+	
+	@FindBy(xpath = ".//h3[@class='cart_empty_content--text']")
+	private WebElement emptyLabel;
+  
+	@FindBy(xpath = "//div[@class='col-4of5 action--text--config_description']")
+	private WebElement serverNameLabel;
+	
+	
+	
+	@FindBy(xpath = "//span[@class='removal_message']")
+	private WebElement removeMessage;
+	
+	
+	
 ////////////////////////////////////////////////Methods////////////////////////////////////	
 public AccountPage gotTocheckout (WebDriver driver)
     
@@ -76,6 +101,22 @@ public ConfigurationPage gotToEditOption (WebDriver driver)
 
 
 
+public ShoppingCartPage clickRemovelink (WebDriver driver)
+
+{
+
+ 
+   removeLink.click();
+   WaitTool.isElementPresentAndDisplay(driver,removeWarningLabel);
+   removeItemButton.click();
+   
+    
+	return this;
+}
+
+	
+
+
 
 
 public boolean elementIsPresent (String xpath, WebDriver driver)
@@ -91,17 +132,7 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 
 
 
-@Override
-public ShoppingCartPage and() {
-	// TODO Auto-generated method stub
-	return this;
-}
 
-@Override
-public ShoppingCartPage then() {
-	// TODO Auto-generated method stub
-	return this;
-}
 	
 ////////////////////////////////////////////////VALIDATIONS////////////////////////////////////	
 	
@@ -165,4 +196,42 @@ public ShoppingCartPage then() {
 			}
 		};
 	}
+
+	
+	
+	public Validator isItemDeleted(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				    
+				
+				   WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+				   WaitTool.isElementPresentAndDisplay(driver, removeMessage);
+				   WaitTool.isElementPresentAndDisplay(driver, emptyLabel);
+				   
+				
+				   Assert.assertFalse(checkoutButton.isDisplayed());
+				   
+				
+			}
+		};
+	}
+	
+	
+	@Override
+	public Page and() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page then() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
 }
+
+
+
