@@ -72,7 +72,7 @@ public class PageUtils {
 			};
 	}
 	
-	public static Validator isMessageDisplayedwithWebElement(final WebElement element, final String message, final FirefoxDriver driver){
+	public static Validator isMessageDisplayedwithWebElement(final WebElement element, final String message, final WebDriver driver){
 		return new Validator()
 			{
 			   @Override
