@@ -45,7 +45,7 @@ public class CartTestCase extends TestCaseUtil{
 		ui = new UI();
 		driver = ui.getFirefoxDriver();
 		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();  
+		//driver.manage().window().maximize();  
 		driver.get(Constants.DOMAIN);
 		loginPage = ui.getLandingPage();
 		Constants.setTotalMes(0);

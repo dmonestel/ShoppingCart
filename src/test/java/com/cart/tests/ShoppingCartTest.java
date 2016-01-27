@@ -241,6 +241,59 @@ public class ShoppingCartTest extends CartTestCase  {
 		);
    }
 	
-	
+	@Test ()
+	public void remove_a_server_from_Cart_when_there_are_more_two_items_Cart_68(){
+		
+	configPage = PageFactory.initElements(driver, ConfigurationPage.class);
+		
+		using
+		(			
+				configPage.configuration_Server_page_loading()	
+				.hostname_fill(DeviceData.getNew()
+					.setHostname(Constants.hostname)
+		)
+		)
+		.check
+		(
+				configPage.verify_windows_db_with_centos(driver)
+		);	
+		andUsing(
+				shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
+				
+	   )
+	    .check(
+	    	  shoppingCartPage.isShoppingCartdisplayed(driver)
+	    );
+		andUsing(
+				configPage=shoppingCartPage.gotToConfigurationPage(driver)
+				.configuration_add_third_server(driver)
+		)
+		.check(
+				configPage.is_configuration_displayed(driver)
+		);
+		andUsing(
+				
+				configPage.hostname_fill(DeviceData.getNew()
+						.setHostname("secondServer.com"))
+				
+		).check
+		(
+				configPage.verify_windows_db_with_centos(driver)
+		);	
+		andUsing(
+				shoppingCartPage= configPage.AddToCart(driver,DeviceData.getNew()) 
+				
+	   )
+	    .check(
+	    	  shoppingCartPage.isShoppingCartdisplayed(driver)
+	    ); 
+		andUsing(
+				shoppingCartPage.clickRemovelink(driver)
+		)
+		.check(
+				shoppingCartPage.isOnlyanItemDeleted(driver)
+		);
+		
+   }
 
 }
