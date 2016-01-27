@@ -1,15 +1,17 @@
 package com.cart.pages;
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
-import com.ts.commons.Validator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
 import com.cart.data.Constants;
-import com.cart.data.DeviceData;
+import com.cart.data.*;
 import com.ts.commons.Page;
+import com.ts.commons.Validator;
 import com.ts.commons.RaceConditions.WaitTool;
 
 public class ConfigurationPage extends Page {

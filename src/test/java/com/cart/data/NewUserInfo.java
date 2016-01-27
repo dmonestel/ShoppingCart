@@ -15,6 +15,9 @@ public class NewUserInfo {
 	private String signature;
 	private String country;
 	private String state;
+	private String wrong_password;
+	private String wrong_email;
+	private String wrong_username;
 	
 	public static NewUserInfo getNew()
 	{
@@ -30,6 +33,24 @@ public class NewUserInfo {
 		return this;
 	}
 	
+	public String getWrong_user() {
+		return this.wrong_username;
+	}
+
+	public NewUserInfo setWrong_username(String wrong_username) {
+		this.wrong_username = wrong_username;
+		return this;
+	}
+
+
+	public String getWrong_email() {
+		return this.wrong_email;
+	}
+
+	public NewUserInfo setWrong_email(String wrong_email) {
+		this.wrong_email = wrong_email;
+		return this;
+	}	
 //
 	public String getState() {
 		return this.state;
@@ -141,5 +162,16 @@ public class NewUserInfo {
 		this.signature = signature;
 		return this;
 	}
-//	
+//
+
+	public String getWrong_password() {
+		return this.wrong_password;
+	}
+
+	public NewUserInfo setWrong_password(String wrong_password) {
+		this.wrong_password = wrong_password;
+		return this;
+	}
+	
+//
 }

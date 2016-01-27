@@ -37,7 +37,9 @@ public class CartTestCase extends TestCaseUtil{
 		Constants.setPassword (p.getProperty("password" ).toString());
 		Constants.setEmail (p.getProperty("email" ).toString());
 		Constants.setTotalMes(0);
-	
+		Constants.setWrong_password (p.getProperty("wrong_password" ).toString());
+		Constants.setWrong_email (p.getProperty("wrong_email" ).toString());
+		Constants.setWrong_username(p.getProperty("wrong_username" ).toString());
 	}
 	
 	@BeforeMethod (alwaysRun = true)

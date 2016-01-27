@@ -100,6 +100,7 @@ public ConfigurationPage gotToEditOption (WebDriver driver)
 }
 
 
+
 public ShoppingCartPage clickRemovelink (WebDriver driver)
 
 {
@@ -114,6 +115,7 @@ public ShoppingCartPage clickRemovelink (WebDriver driver)
 }
 
 	
+
 
 
 
@@ -140,7 +142,8 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			@Override
 			public void Validate() {
 				
-			  WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+			    WaitTool.waitForElementPresentAndVisible(driver, shoppingCartLabel);
+				WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
 			 
 			  
 			  int totalCaracteres=totalMonthly_label.getText().length();
@@ -151,6 +154,8 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 			}
 		};
 	}
+	
+
 
 	public Validator isLocationsDisplayed(final WebDriver driver){
 		return new Validator() {

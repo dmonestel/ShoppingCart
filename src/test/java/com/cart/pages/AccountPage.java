@@ -1,18 +1,22 @@
 package com.cart.pages;
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
 import com.cart.data.AccountData;
 import com.cart.data.NewUserInfo;
 import com.ts.commons.Page;
 import com.ts.commons.Validator;
 import com.ts.commons.RaceConditions.WaitTool;
+
 import org.openqa.selenium.Keys;
 
+import com.cart.data.PageUtils;
 
 public class AccountPage extends Page{
 
@@ -64,7 +68,7 @@ public class AccountPage extends Page{
 	@FindBy(xpath = "//div[@class='action--render--phone']/input")
 	private WebElement phone_input;
 	
-	@FindBy(xpath = "//div[@class='action--render--username']/input")
+	@FindBy(xpath = "//div[@class='action--render--username']//input")
 	private WebElement username2_input;
 	
 	@FindBy(xpath = "//div[@class='action--render--password']/input")
@@ -87,7 +91,7 @@ public class AccountPage extends Page{
 	@FindBy(xpath = "//div[@class='action--render--countries']//input")
 	private WebElement country_search_fill;
 	//
-	@FindBy(xpath = "//label[@class='field-label']")
+	@FindBy(xpath = "//span[contains(.,'I am authorized to, and do duly, sign this Service Order and Master Services Agreement')]")
 	private WebElement MSA_check;
 	
 	@FindBy(xpath = "//button[@class='btn btn--arrow-right btn--large action--click--signup']")
@@ -95,16 +99,58 @@ public class AccountPage extends Page{
 	
 	 @FindBy(xpath = "//input[@class='action--radio--new_credit_card']")
 	 private WebElement use_new_credit_cart_radiobutton;
+	 
+	 @FindBy(xpath = " (//span[@class='validation-message--invalid field-error'])[16]")
+	 private WebElement Same_Password_validation;
+	
+	 @FindBy(xpath = "(//div[@class='action--render--email'])[2]/input")
+	 private WebElement email_input2;
+	 @FindBy(xpath = "(//div[@class='action--render--email is-invalid']//input[@class='invalid'])[2]")
+	 private WebElement email__with_invalid_input;
+	 
+	 
+	 @FindBy(xpath = "(//span[@class='validation-message--invalid field-error'])[12]")
+	 private WebElement email_validation;
+	 
+	 @FindBy(xpath = "//span[@class='validation-message--invalid field-error'][contains(.,'Username should have at least 8 characters')]")
+	 private WebElement username_validation;
+	 
+	 @FindBy(xpath = "//span[@class='validation-message--invalid field-error'][contains(.,'Please confirm that you are authorized to sign this')]")
+	 private WebElement MSA_check_validation;
+	 @FindBy(xpath = "//div[@class='action--render--authorization field--checkbox__wrap']")
+	 private WebElement MSA_checked;
+	
+	 @FindBy(xpath = "//input[@id='forgot-password-input']")
+	 private WebElement forgot_password_input;
+	
+	 @FindBy(xpath = "//a[@class='action--reset--password btn btn--large']")
+	 private WebElement reset_password_button;
+	 
+	 @FindBy(xpath = "//a[@class='action--reset--password_confirm btn btn--large']")
+	 private WebElement reset_password_confirm_button;
 	
 	
 ////////////////////////////////////////////////METHODS///////////////////////////////////////	
-public AccountPage login_fill (WebDriver driver,AccountData data)   
+public PaymentMethodsPage login_fill (WebDriver driver,AccountData data)   
     {
 	 username_input.sendKeys(data.getUsername());	
 	 password_input.sendKeys(data.getPassword());
 	 login_button.click();
-	 return PageFactory.initElements(driver, AccountPage.class);
+	 return PageFactory.initElements(driver, PaymentMethodsPage.class);
     }
+
+public AccountPage reset_password_fill (WebDriver driver,AccountData data)   
+{
+  forgot_password_link.click();
+   WaitTool.waitForElementPresentAndVisible(driver, forgot_password_link);
+   forgot_password_input.sendKeys(data.getUsername());
+   reset_password_button.click();
+   WaitTool.waitForElementPresentAndVisible(driver, reset_password_confirm_button);
+   reset_password_confirm_button.click();
+   forgot_password_link.click();
+ return PageFactory.initElements(driver, AccountPage.class);
+}
+
 public AccountPage email_address_fill (WebDriver driver,AccountData data)
 {
 	email_input.sendKeys(data.getEmail());
@@ -205,6 +251,22 @@ public <T> AccountPage fillContactDataFullParam(NewUserInfo contact, WebDriver d
 }
 
 
+public AccountPage validate_fields_for_new_account (NewUserInfo data)
+
+{
+ MSA_check.click();
+ MSA_check.click();
+ password2_input.sendKeys(data.getPassword());
+ confirm_password_input.sendKeys(data.getWrong_password());
+ email_input2.clear();
+ email__with_invalid_input.sendKeys(data.getWrong_email());
+ username2_input.sendKeys(data.getWrong_user());
+ 
+ 
+ create_account_and_continue_button.click();
+return this;
+}
+
 
 @Override
 public AccountPage and() {
@@ -232,6 +294,29 @@ public AccountPage then() {
 			}
 			};
 		}
+	
+	public Validator new_account_validations_are_present (final WebDriver driver,AccountData data)   
+    {
+		return new Validator() {
+			@Override
+			public void Validate() {
+			  String Text = Same_Password_validation.getText();
+			  Assert.assertEquals(Text, "both password should be the same");
+			  Text = email_validation.getText();
+			  Assert.assertEquals(Text, "Email is invalid");
+			  Text = username_validation.getText();
+			  Assert.assertEquals(Text, "Username should have at least 8 characters");
+			  Text = MSA_check_validation.getText();
+			  Assert.assertEquals(Text, "Please confirm that you are authorized to sign this");
+			  
+			
+			  
+				
+			}
+			};
+	 
+    }
+	
 	public Validator ispaymentmethodspagedisplayed(final WebDriver driver){
 		return new Validator() {
 			@Override
@@ -252,6 +337,21 @@ public AccountPage then() {
 				
 			  WaitTool.waitForElementPresentAndVisible(driver, username2_input);
 			  Assert.assertTrue(username2_input.isDisplayed());
+			  
+			 
+				
+			}
+			};
+		}
+	public Validator is_reset_password_empthy(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				
+			  WaitTool.waitForElementPresentAndVisible(driver,forgot_password_input);
+			  String text=forgot_password_input.getText();
+			  Assert.assertEquals(text, "");
+			  
 			  
 			 
 				
