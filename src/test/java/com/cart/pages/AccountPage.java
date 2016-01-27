@@ -98,13 +98,14 @@ public class AccountPage extends Page{
 	
 	
 ////////////////////////////////////////////////METHODS///////////////////////////////////////	
-public AccountPage login_fill (WebDriver driver,AccountData data)   
+public PaymentMethodsPage login_fill (WebDriver driver,AccountData data)   
     {
 	 username_input.sendKeys(data.getUsername());	
 	 password_input.sendKeys(data.getPassword());
 	 login_button.click();
-	 return PageFactory.initElements(driver, AccountPage.class);
+	 return PageFactory.initElements(driver, PaymentMethodsPage.class);
     }
+
 public AccountPage email_address_fill (WebDriver driver,AccountData data)
 {
 	email_input.sendKeys(data.getEmail());
