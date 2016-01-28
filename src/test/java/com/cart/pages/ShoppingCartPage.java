@@ -214,8 +214,30 @@ public boolean elementIsPresent (String xpath, WebDriver driver)
 				   
 				
 			}
+			
 		};
 	}
+	
+	
+	
+	public Validator isOnlyanItemDeleted(final WebDriver driver){
+		return new Validator() {
+			@Override
+			public void Validate() {
+				    
+				
+				   WaitTool.isElementPresentAndDisplay(driver, shoppingCartLabel);
+				   WaitTool.isElementPresentAndDisplay(driver, removeMessage);
+				   WaitTool.isElementPresentAndDisplay(driver, emptyLabel);
+				   
+				   Assert.assertTrue(checkoutButton.isDisplayed());
+				   Assert.assertFalse(emptyLabel.isDisplayed());
+				   
+				
+			}
+		};
+	}
+	
 	
 	
 	@Override
