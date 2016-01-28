@@ -20,7 +20,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <artifactId>taf</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/TsTaf-2.3.9.jar</systemPath>
+      <systemPath>${basedir}/lib/TsTaf-2.3.10.jar</systemPath>
     </dependency>
       <dependency>
  <groupId>org.seleniumhq.selenium</groupId>

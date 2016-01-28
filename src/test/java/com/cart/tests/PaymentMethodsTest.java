@@ -31,7 +31,7 @@ public class PaymentMethodsTest extends CartTestCase {
 
 	@Test (dataProvider = "data")
 
-	public void addNewCreditCard_Cart53_Cart55_Cart56_Cart57_Cart58_Cart59(
+	public void addNewCreditCard_Cart53_Cart55_Cart56_Cart57_Cart58_Cart59_Cart100(
 			String firstName, 
 			String lastName, 
 			String type,
@@ -117,7 +117,8 @@ public class PaymentMethodsTest extends CartTestCase {
 		)
 		.check
 		(
-				reviewOrderPage.isEqualTheCreditCardNumber(cardNumber, driver)			
+				reviewOrderPage.isEqualTheCreditCardNumber(cardNumber, driver),
+				reviewOrderPage.isEqualTheBillingAddress(useNewAddress ,address, city, state, postalCode, country, driver)
 		);			
 	}
 }
